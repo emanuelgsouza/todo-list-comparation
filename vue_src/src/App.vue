@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="columns is-multiline">
+      <div class="column is-12 has-text-centered">
+        <img alt="Vue logo" src="./assets/logo.png" class="is-centered">
+      </div>
+
+      <div class="column is-12 has-text-centered">
+        <h1 class="title"> Todo list de exemplo em Vuejs </h1>
+      </div>
+
+      <div class="column is-12">
+        <TodoList />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoList/index.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    TodoList
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
