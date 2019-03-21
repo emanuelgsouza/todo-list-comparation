@@ -12,6 +12,18 @@ export default {
     ],
     value: ''
   }),
+  computed: {
+    hasValue () {
+      return this.value.length > 0
+    },
+    buttonClass () {
+      if (this.hasValue) {
+        return 'button is-primary'
+      }
+
+      return 'button is-primary is-disable'
+    }
+  },
   methods: {
     handleClick () {
       const items = [ ...this.items ]
@@ -24,6 +36,12 @@ export default {
       const { index, value } = props
       const items = [ ...this.items ]
       items[index] = value
+      this.items = [ ...items ]
+    },
+    handleDelete ({ index }) {
+      const items = [ ...this.items ]
+      items.splice(index, 1)
+
       this.items = [ ...items ]
     }
   }
@@ -38,7 +56,8 @@ export default {
         :key="key"
         :index="key"
         :item="item"
-        @change="handleChangeItem" />
+        @change="handleChangeItem"
+        @delete="handleDelete" />
     </ul>
     <form action="#">
       <div class="field">
@@ -53,8 +72,9 @@ export default {
       </div>
 
       <button
+        :disabled="!hasValue"
         type="button"
-        class="button is-primary"
+        :class="buttonClass"
         @click="handleClick"> Add </button>
     </form>
   </div>
