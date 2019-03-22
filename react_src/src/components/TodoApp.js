@@ -47,6 +47,13 @@ class TodoApp extends Component {
   }
 
   handleItemDelete (index) {
+    if (this.items.length === 1) {
+      this.setState({
+        items: []
+      })
+      return
+    }
+
     const items = [ ...this.state.items ]
     items.splice(index, 1)
 

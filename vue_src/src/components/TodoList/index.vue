@@ -39,6 +39,11 @@ export default {
       this.items = [ ...items ]
     },
     handleDelete ({ index }) {
+      if (this.items.length === 1) {
+        this.items = []
+        return
+      }
+
       const items = [ ...this.items ]
       items.splice(index, 1)
 
