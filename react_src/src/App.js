@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import TodoApp from './components/TodoApp';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div class="columns is-multiline is-centered">
+        <div className="App-header column is-12 has-text-centered">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        </div>
+
+        <div class="column is-12 has-text-centered">
+          <h1 class="title"> Todo list de exemplo em React </h1>
+        </div>
+
+        <div class="column is-half">
+          <TodoApp />
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default App
