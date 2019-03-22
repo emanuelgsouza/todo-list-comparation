@@ -18,6 +18,7 @@ class TodoApp extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleItemChange = this.handleItemChange.bind(this)
   }
 
   handleClick () {
@@ -26,6 +27,15 @@ class TodoApp extends Component {
     this.setState({
       items,
       value: ''
+    })
+  }
+
+  handleItemChange (props) {
+    const { index, value } = props
+    const items = [ ...this.state.items ]
+    items[index] = value
+    this.setState({
+      items: [ ...items ]
     })
   }
 
@@ -38,12 +48,16 @@ class TodoApp extends Component {
   render () {
     return (
       <div className="TodoApp content">
-        <ul> { this.state.items.map((item, key) => <TodoItem key={key} item={item} />) } </ul>
+        <ul>
+          { this.state.items.map((item, key) => {
+            return <TodoItem key={key} item={item} index={key} onChange={this.handleItemChange} />
+          }) }
+        </ul>
 
         <form>
           <TodoInput value={this.state.value} onChange={value => this.handleChange(value)} />
 
-          <TodoButton onClick={() => this.handleClick()} />
+          <TodoButton value={this.state.value} onClick={() => this.handleClick()} />
         </form>
       </div>
     )
