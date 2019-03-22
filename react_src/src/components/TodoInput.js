@@ -5,6 +5,8 @@ export default (props) => {
     <div className="field">
       <p className="control">
         <input
+          autofocus
+          placeholder="Uma tarefa qualquer"
           className="input"
           type="text"
           value={props.value}
