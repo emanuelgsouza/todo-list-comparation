@@ -1,13 +1,10 @@
 <div class="content">
   <ul>
-    <!-- <Item
-      v-for="(item, key) in items"
-      :key="key"
-      :index="key"
-      :item="item"
-      @change="handleChangeItem"
-      @delete="handleDelete" /> -->
-      <li *ngFor="let item of items"> {{ item }} </li>
+    <app-todo-item
+      *ngFor="let item of items"
+      [item]="item"
+      (change)="handleItemChange(item)"
+      (delete)="handleDelete(item)"></app-todo-item>
   </ul>
   <form action="#">
     <div class="field">

@@ -1,0 +1,16 @@
+<div class="columns">
+  <div class="column is-11">
+    <li *ngIf="!showInput" (click)="editItem()"> {{ item.value }} </li>
+    <input
+      class="input is-primary"
+      type="text"
+      [(ngModel)]="item.value"
+      name="value"
+      *ngIf="showInput"
+      (blur)="handleBlur()">
+  </div>
+  
+  <div class="column is-1">
+    <button class="button is-danger" (click)="deleteElement()"> Del </button>
+  </div>
+</div>

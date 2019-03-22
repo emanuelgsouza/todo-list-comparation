@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoItem } from '../todo-item';
+
+const factoryTodoItem = (items:[TodoItem], value: string): TodoItem => {
+  return {
+    id: items.length,
+    value
+  }
+}
 
 @Component({
   selector: 'app-todo',
@@ -8,12 +16,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class TodoComponent implements OnInit {
 
-  todoItem = ''
+  todoItem: string = ''
 
   items = [
-    'Comprar pão',
-    'Comprar arroz',
-    'Entregar trabalho de sexta'
+    {
+      id: 0,
+      value: 'Comprar pão'
+    },
+    {
+      id: 1,
+      value: 'Comprar arroz'
+    },
+    {
+      id: 2,
+      value: 'Entregar trabalho de sexta'
+    }
   ]
 
   constructor() { }
@@ -28,10 +45,27 @@ export class TodoComponent implements OnInit {
 
     const items = [ ...this.items ]
 
-    items.push(this.todoItem)
+    items.push(factoryTodoItem(items, this.todoItem))
 
     this.items = [ ...items ]
     this.todoItem = ''
   }
 
+  handleItemChange (item) {
+    const { id, value } = item
+    const items = [ ...this.items ]
+    items[id] = {
+      id,
+      value
+    }
+    this.items = [ ...items ]
+  }
+
+  handleDelete ({ id }) {
+    console.log({ id })
+    const items = [ ...this.items ]
+    items.splice(id, 1)
+
+    this.items = [ ...items ]
+  }
 }
