@@ -16,9 +16,10 @@ class TodoApp extends Component {
       value: ''
     }
 
-    this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleItemChange = this.handleItemChange.bind(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
   handleClick () {
@@ -45,12 +46,26 @@ class TodoApp extends Component {
     })
   }
 
+  handleItemDelete (index) {
+    const items = [ ...this.state.items ]
+    items.splice(index, 1)
+
+    this.setState({
+      items: [ ...items ]
+    })
+  }
+
   render () {
     return (
       <div className="TodoApp content">
         <ul>
           { this.state.items.map((item, key) => {
-            return <TodoItem key={key} item={item} index={key} onChange={this.handleItemChange} />
+            return <TodoItem
+              key={key}
+              item={item}
+              index={key}
+              onChange={this.handleItemChange}
+              onDelete={this.handleItemDelete} />
           }) }
         </ul>
 
