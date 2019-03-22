@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoItem } from '../todo-item';
 
-const factoryTodoItem = (items:[TodoItem], value: string): TodoItem => {
+const factoryTodoItem = (items, value) => {
   return {
     id: items.length,
     value
@@ -62,7 +61,11 @@ export class TodoComponent implements OnInit {
   }
 
   handleDelete ({ id }) {
-    console.log({ id })
+    if (this.items.length === 1) {
+      this.items = []
+      return
+    }
+
     const items = [ ...this.items ]
     items.splice(id, 1)
 
